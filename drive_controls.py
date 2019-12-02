@@ -40,18 +40,41 @@ while True:
 
   image, detection, class_confidence, class_name = rec.recognize_face(args)
   if detection is not None:
+
+    # go one direction
+
     GPIO.output(3, True)
     GPIO.output(5, False)
 
     GPIO.output(35, True)
     GPIO.output(33, False)
 
-    pwm.ChangeDutyCycle(80)
+    pwm.ChangeDutyCycle(100)
 
     GPIO.output(7, True)
     GPIO.output(37, True)
 
-    sleep(1)
+    sleep(5)
+
+    # go other direction
+    GPIO.output(7, False)
+    GPIO.output(37, False)
+
+    GPIO.output(3, False)
+    GPIO.output(5, True)
+
+    GPIO.output(35, False)
+    GPIO.output(33, True)
+
+    pwm.ChangeDutyCycle(100)
+
+    GPIO.output(7, True)
+    GPIO.output(37, True)
+
+    sleep(5)   
+
+
+    # zero out everything
 
     GPIO.output(7, False)
     GPIO.output(37, False)
